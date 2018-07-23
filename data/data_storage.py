@@ -23,7 +23,7 @@ class DataStorage:
         else:
             data_obj.pandas_data = pd.read_csv(file_path)
             data_obj.column_names = data_obj.pandas_data.columns.values.tolist()
-        data_obj.file_path = data_dir + data_obj.data_id
+        data_obj.file_path = datastorage + data_obj.data_id
         data_obj.persistent()
         collection = client[database_name][data_meta_db_name]
         collection.insert({'data_id' : data_obj.data_id, 'column_names':data_obj.column_names, 'file_path':data_obj.file_path })
@@ -35,7 +35,7 @@ class DataStorage:
         data_obj.data_id = str(uuid.uuid1())
         data_obj.pandas_data = pandas_data
         data_obj.column_names = data_obj.pandas_data.columns.values.tolist()
-        data_obj.file_path = data_dir + data_obj.data_id
+        data_obj.file_path = datastorage + data_obj.data_id
         data_obj.persistent()
         collection = client[database_name][data_meta_db_name]
         collection.insert({'data_id' : data_obj.data_id, 'column_names':data_obj.column_names, 'file_path':data_obj.file_path })
